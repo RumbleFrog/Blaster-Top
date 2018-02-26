@@ -19,4 +19,4 @@ For more info, view `blastertop --help`
 
 `blastertop -k map -f input.txt -o output.txt`
 
-`blastertop -r meta_version` -f input.txt -o output.txt
+`blastertop -r meta_version -f input.txt -o output.txt`
