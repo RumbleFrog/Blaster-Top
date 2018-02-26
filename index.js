@@ -85,6 +85,7 @@ async function readData() {
     if (e.code === 'ENOENT') {
       console.log('Unable to read file');
       process.exit(1);
-    } else throw e;
+    } else
+      console.log(e);
   }
 }

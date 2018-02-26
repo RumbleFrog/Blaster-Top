@@ -1,6 +1,6 @@
 {
   "name": "blaster-top",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A simple utility for finding top result in Blaster's JSON output fields",
   "main": "index.js",
   "repository": "git@github.com:RumbleFrog/Blaster-Top.git",
