@@ -29,7 +29,7 @@ if (app.key) {
     .then(() => {
 
       json.forEach((server) => {
-        if (server.hasOwnProperty(app.key)) {
+        if (server.hasOwnProperty(app.key) && server[app.key] != '') {
           if (data.hasOwnProperty(server[app.key])) data[server[app.key]]++;
           else data[server[app.key]] = 1;
         }
