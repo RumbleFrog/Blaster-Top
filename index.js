@@ -27,10 +27,6 @@ if (app.key) {
 
   readData()
     .then(() => {
-      if (typeof json[0][app.key] === 'undefined') {
-        console.log('Unable to find key');
-        process.exit(1);
-      }
 
       json.forEach((server) => {
         if (server.hasOwnProperty(app.key)) {
@@ -44,12 +40,42 @@ if (app.key) {
       keysSorted.forEach(key => sorted[key] = data[key]);
 
       fs.writeFile(app.outfile, JSON.stringify(sorted, null, 4), (err) => {
-        console.log(err);
-        process.exit(1);
+        if (err) {
+          console.log(err);
+          process.exit(1);
+        }
       });
 
     })
-    .catch(e => {throw e});
+    .catch(e => console.log(e));
+} else if (app.rule) {
+  if (typeof app.rule === 'boolean') app.help();
+
+  readData()
+    .then(() => {
+
+      json.forEach((server) => {
+        if (server.hasOwnProperty('rules')) {
+          if (server.rules.hasOwnProperty(app.rule)) {
+            if (data.hasOwnProperty(server.rules[app.rule])) data[server.rules[app.rule]]++;
+            else data[server.rules[app.rule]] = 1;
+          }
+        }
+      })
+
+      keysSorted = Object.keys(data).sort(function(a,b){return (data[a]-data[b]) * -1})
+
+      keysSorted.forEach(key => sorted[key] = data[key]);
+
+      fs.writeFile(app.outfile, JSON.stringify(sorted, null, 4), (err) => {
+        if (err) {
+          console.log(err);
+          process.exit(1);
+        }
+      });
+
+    })
+    .catch(e => console.log(e));
 }
 
 async function readData() {
