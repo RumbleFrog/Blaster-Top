@@ -1,5 +1,5 @@
 {
-  "name": "Blaster-Top",
+  "name": "blaster-top",
   "version": "1.0.0",
   "description": "A simple utility for finding top result in Blaster's JSON output fields",
   "main": "index.js",
